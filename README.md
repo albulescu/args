@@ -12,7 +12,7 @@ $ npm install mixedargs --save
 
 Browser:
 ```js
-bower install mixedargs --save
+$ bower install mixedargs --save
 ```
 ### Usage
 ```js
@@ -26,11 +26,25 @@ var showError = function() {
     if( args.when(['String', 'Number']) ) {
         //Message, ErrorCode
     }
-    else if( args.when(['String', 'Number', 'Number']) ) {
-        //Message, ErrorCode, HttpCode
-    }
     else if( args.when(['String', 'String']) ) {
         //Message, ErrorType
     }
+}
+```
+And async mode
+
+```js
+var showError = function() {
+
+    var args = mixedargs(arguments);
+
+    args.when(['String','Number'], function(message, code){
+        //do something
+    });
+
+    args.when(['String','Object'], function(message, data){
+        //do something
+    });
+
 }
 ```
