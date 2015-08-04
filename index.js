@@ -35,7 +35,7 @@
             var uid = mixed.join('-');
 
             if( this.queued.indexOf(uid) !== -1 ){
-                throw new Error('You already registered mixed params:' + mixed);
+                throw new Error('You already registered mixed params: ' + mixed.join(', '));
             }
 
             this.queued.push(uid);
@@ -45,7 +45,8 @@
             }
 
             var matchedCount = 0;
-            var regExpMatch = new RegExp('(Number|String|Array|Boolean)\\((.*)\\)');
+            var regExpAllowedTypes = ['String','Number'];
+            var regExpMatch = new RegExp('([a-zA-Z]+)\\((.*)\\)');
 
             for( var i in mixed ) {
 
@@ -53,6 +54,11 @@
                 var ruleRegexpMatch = regExpMatch.exec(rule);
 
                 if( ruleRegexpMatch && ruleRegexpMatch.length === 3 ) {
+
+                    if( regExpAllowedTypes.indexOf(ruleRegexpMatch[1]) === -1 ) {
+                        throw new Error('Type ' + ruleRegexpMatch[1] + ' is not allowed. Use: ' + regExpAllowedTypes.join(', '));
+                    }
+
                     if( isType(this.arguments[i], ruleRegexpMatch[1]) &&
                         (new RegExp(ruleRegexpMatch[2])).test(this.arguments[i] + '') ) {
                         matchedCount++;

@@ -51,6 +51,20 @@ exports.nodeunit = {
         test.done();
     },
 
+    itShouldThrowErrorOnUnavailableRegexpType: function(test) {
+
+        var func = function() {
+            var args = fnargs(arguments);
+            args.when(['Boolean([0-9]{3,})']);
+        };
+
+        test.throws(function(){
+            func(1);
+        });
+
+        test.done();
+    },
+
     itShouldWorkAsync: function(test) {
         var output = '';
 
