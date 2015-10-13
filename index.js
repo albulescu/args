@@ -68,7 +68,7 @@
                 }
             }
 
-            if( matchedCount === mixed.length ) {
+            if( matchedCount === mixed.length && !this.matched) {
 
                 if( typeof(callback) === 'function' ) {
                     callback.apply(null, this.arguments);
