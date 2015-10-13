@@ -1,6 +1,6 @@
 {
   "name": "mixedargs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "MixedArgs allows you to add mixed parameters yo functions, a way to overloading functions",
   "author": {
     "name": "Albulescu Cosmin",
